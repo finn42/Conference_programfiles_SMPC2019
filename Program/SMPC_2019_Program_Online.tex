@@ -1,0 +1,98 @@
+% SMPC 2019 proceedings
+% remember to compile twice in LaTeX, then with make Index, then with LaTeX again, twice.
+
+\documentclass[10pt, twoside]{book}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{multicol}
+\usepackage{setspace}
+\usepackage{graphicx}
+\usepackage{wrapfig}
+\usepackage{mathptmx}  % Use times font for text and math
+\usepackage{fancyhdr}
+\usepackage{makeidx}
+\usepackage{pdfpages}
+\usepackage{hyperref}
+\usepackage{geometry}
+\usepackage{tipa}
+\usepackage[labelformat=empty]{caption}
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage{float}
+\usepackage[section]{placeins}
+\usepackage{helvet}
+
+% formatting commands
+% defining table dimensions for talks (AB) and posters (DE) 
+\newcolumntype{A}{>{\raggedleft\arraybackslash}m{2.5cm}}
+\newcolumntype{B}{>{\arraybackslash}b{13.5cm}}
+\newcolumntype{D}{>{\raggedleft\arraybackslash}m{1cm}}
+\newcolumntype{E}{>{\raggedright\arraybackslash}b{13.5cm}}
+% font
+\renewcommand*\familydefault{\sfdefault}
+% float placement
+%\renewcommand*\textfraction{0.1}
+\renewcommand*\floatpagefraction{0.99}
+\geometry{inner=2.5cm,outer=2.5cm,top=2.3cm,bottom=2.3cm}
+\pagestyle{fancy}
+% colour schema for hyperlinks
+\hypersetup{colorlinks=true, linkcolor=blue, filecolor=magenta, urlcolor=blue}
+% fancy header details
+\lhead[\thepage]{2019 Biennial Meeting of the Society of Music Perception and Cognition}
+\rhead[New York University, August 5-7th, 2019]{\thepage}
+\lfoot{}
+\cfoot{}
+% indexing FTW
+\makeindex
+\usepackage[totoc]{idxlayout}
+\includepdfset{offset=0mm 0}
+% pdfs
+\pdfinclusioncopyfonts 1
+
+% The Document itself
+\begin{document}
+%cover
+\includepdf[pages=1,pagecommand=\thispagestyle{empty}]{cover_02b_program_small}%
+%\includepdf{cover_02b_program_large}%
+
+\tableofcontents
+
+\newpage
+\input{Letters.tex}
+
+\newpage
+\singlespacing
+\input{Committees.tex}
+\newpage
+\input{ConferenceInfo.tex}
+\newpage
+\input{Events.tex}
+\input{Keynote.tex}
+\input{CodeConduct.tex}
+
+\clearpage
+% why is it so hard to get the table of contents to list this page correctly? still not quite.
+\addcontentsline{toc}{section}{Condensed Schedule}
+\includepdf[addtotoc={13,section,1,Condensed Schedule,schedule},angle=90,pages=1,pagecommand=\thispagestyle{empty}]{images/SMPC2019_Condensed_colour.pdf}%
+\newpage
+
+%Schedule details without abstracts, changing header along the way
+\rhead[Presentations on Day 1, August 5, 2019]{\thepage}
+\input{Aug5_Talks_Details.tex}
+\newpage
+\rhead[Presentations on Day 2, August 6, 2019]{\thepage}
+\input{Aug6_Talks_Details.tex}
+\input{Aug6_Poster_Details.tex}
+\newpage
+\rhead[Presentations on Day 3, August 7, 2019]{\thepage}
+\input{Aug7_Talks_Details.tex}
+\clearpage
+\input{Aug7_Poster_Details.tex}
+
+% last few pages of index and maps
+\rhead[New York University, August 5-7th, 2019]{\thepage}
+\clearpage
+\printindex % note index is listed as component type Chapter, so it stands out in TOC, but that's OK.
+\input{Maps.tex}
+
+\end{document}
